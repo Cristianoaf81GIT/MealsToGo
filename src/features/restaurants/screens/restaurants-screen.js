@@ -1,54 +1,49 @@
 import React from "react";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import {
-  StatusBar,
-  StyleSheet,
-  View,
-  SafeAreaView,
-  Platform,
-} from "react-native";
+import { StatusBar, View, SafeAreaView, Platform } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { RestaurantInfoCard } from "../components/restaurants-info-card.component";
+import styled from "styled-components/native";
+
+const SafeArea = styled(SafeAreaView)`
+  flex: 1;
+  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`}
+`;
+
+const SearchContainer = styled(View)`
+  padding: 16px !important;
+  background-color: white;
+  width: 100%;
+  margin-bottom: 3px;
+  ${StatusBar.currentHeight && Platform && Platform.OS === "android"
+    ? `margin-top: ${StatusBar.currentHeight}px`
+    : "margin-top: 0px"}
+`;
+
+const RestaurantListContainer = styled.View`
+  flex: 2;
+  background-color: white;
+  width: 100%;
+  padding: 16px;
+`;
 
 export const RestaurantsScreen = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
   const onChangeSearch = (query) => setSearchQuery(query);
 
   return (
-    <SafeAreaView style={styles.container} emulateUnlessSupported={true}>
+    <SafeArea emulateUnlessSupported={true}>
       <ExpoStatusBar style="auto" />
-      <View style={styles.search}>
+      <SearchContainer>
         <Searchbar
           placeholder="Search"
           onChangeText={onChangeSearch}
           value={searchQuery}
         />
-      </View>
-      <View style={styles.list}>
+      </SearchContainer>
+      <RestaurantListContainer>
         <RestaurantInfoCard />
-      </View>
-    </SafeAreaView>
+      </RestaurantListContainer>
+    </SafeArea>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 3,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "black",
-  },
-  search: {
-    padding: 16,
-    backgroundColor: "white",
-    width: "100%",
-    marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-    marginBottom: 3,
-  },
-  list: {
-    flex: 2,
-    backgroundColor: "blue",
-    width: "100%",
-    padding: 16,
-  },
-});
