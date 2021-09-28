@@ -11,8 +11,8 @@ const SafeArea = styled(SafeAreaView)`
 `;
 
 const SearchContainer = styled(View)`
-  padding: 16px !important;
-  background-color: white;
+  padding: ${(props) => props.theme.space[2]};
+  background-color: ${(props) => props.theme.colors.bg.primary};
   width: 100%;
   margin-bottom: 3px;
   ${StatusBar.currentHeight && Platform && Platform.OS === "android"
@@ -22,9 +22,9 @@ const SearchContainer = styled(View)`
 
 const RestaurantListContainer = styled.View`
   flex: 2;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.bg.primary};
   width: 100%;
-  padding: 16px;
+  padding: ${(props) => props.theme.space[2]};
 `;
 
 export const RestaurantsScreen = () => {
