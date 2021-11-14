@@ -12,20 +12,38 @@ import { RestaurantInfoCard } from "../components/restaurants-info-card.componen
 import styled from "styled-components/native";
 import { Spacer } from "../../../components/spacer/spacer.component";
 
+const resolveSaveAreaMarginTop = () => {
+  if (StatusBar.currentHeight) {
+    return `${StatusBar.currentHeight}px`;
+  }
+  return "initial";
+};
+
 const SafeArea = styled(SafeAreaView)`
   flex: 1;
-  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`}
+  margin-top: ${resolveSaveAreaMarginTop()};
 `;
+
+const resolveMarginTopInSearchContainer = () => {
+  if (StatusBar.currentHeight && Platform && Platform.OS === "android") {
+    return `${StatusBar.currentHeight}px`;
+  }
+  return "0px";
+};
 
 const SearchContainer = styled(View)`
   padding: ${(props) => props.theme.space[2]};
   background-color: ${(props) => props.theme.colors.bg.primary};
   width: 100%;
   margin-bottom: 3px;
-  ${StatusBar.currentHeight && Platform && Platform.OS === "android"
-    ? `margin-top: ${StatusBar.currentHeight}px`
-    : "margin-top: 0px"}
+  margin-top: ${resolveMarginTopInSearchContainer()};
 `;
+
+const RestaurantList = styled(FlatList).attrs((props) => ({
+  contentContainerStyle: {
+    padding: Number(props.theme.space[3].split("px")[0]),
+  },
+}))``;
 
 export const RestaurantsScreen = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -41,7 +59,7 @@ export const RestaurantsScreen = () => {
           value={searchQuery}
         />
       </SearchContainer>
-      <FlatList
+      <RestaurantList
         data={[
           { name: 1 },
           { name: 2 },
@@ -64,7 +82,6 @@ export const RestaurantsScreen = () => {
           </Spacer>
         )}
         keyExtractor={(item) => String(item.name)}
-        contentContainerStyle={{ padding: 32 }}
       />
     </SafeArea>
   );
