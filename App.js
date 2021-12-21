@@ -14,6 +14,7 @@ import { Provider as PaperProvider } from "react-native-paper";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { SafeArea } from "./src/utility/safe-area.component";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
@@ -55,7 +56,26 @@ export default function App() {
   const Tab = createBottomTabNavigator();
 
   const AppTabs = () => (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ color, size }) => {
+          let iconName;
+
+          if (route.name === "Restaurants") {
+            iconName = "md-restaurant";
+          } else if (route.name === "Settings") {
+            iconName = "md-settings";
+          } else if (route.name === "Map") {
+            iconName = "md-map";
+          }
+
+          // You can return any component that you like here!
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: "tomato",
+        tabBarInactiveTintColor: "gray",
+      })}
+    >
       <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
       <Tab.Screen name="Map" component={MapScreen} />
