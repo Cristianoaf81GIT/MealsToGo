@@ -65,19 +65,15 @@ export default function App() {
       tabBarIcon: ({ color, size }) => (
         <Ionicons name={iconName} size={size} color={color} />
       ),
+      tabBarActiveTintColor: "tomato",
+      tabBarInactiveTintColor: "gray",
     };
   };
 
   const Tab = createBottomTabNavigator();
 
   const AppTabs = () => (
-    <Tab.Navigator
-      screenOptions={createScreenOptions}
-      tabBarOptions={{
-        activeTintColor: "tomato",
-        inactiveTintColor: "gray",
-      }}
-    >
+    <Tab.Navigator screenOptions={createScreenOptions}>
       <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
       <Tab.Screen name="Map" component={MapScreen} />
