@@ -16,6 +16,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { SafeArea } from "./src/utility/safe-area.component";
 import { Ionicons } from "@expo/vector-icons";
 
+import { restaurantRequest } from "./src/services/restaurants/restaurants.service";
+
 export default function App() {
   const [oswaldLoaded] = useOswald({
     Oswald_400Regular,
