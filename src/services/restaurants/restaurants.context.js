@@ -1,22 +1,14 @@
-import { mocks } from "./mock";
-import camelize from "camelize";
+import React, { useState, createContext, useEffect, useMemo } from "react";
+import { restaurantRequest, restaurantTransform } from "./restaurants.service";
 
-export const restaurantsRequest = (location = "37.7749295,-122.4194155") => {
-  return new Promise((resolve, reject) => {
-    const mock = mocks[location];
-    if (!mock) {
-      reject("not found");
-    }
-    resolve(mock);
-  });
+export const RestaurantsContext = createContext();
+
+export const RestaurantsContextProvider = ({ children }) => {
+  return (
+    <RestaurantsContext.Provider
+      value={{ restaurants: [1, 2, 3, 4, 5, 6, 7, 8] }}
+    >
+      {children}
+    </RestaurantsContext.Provider>
+  );
 };
-
-const restaurantsTransform = (result) => {
-  const newResult = camelize(result);
-  return newResult;
-};
-
-restaurantsRequest()
-  .then(restaurantsTransform)
-  .then(console.log)
-  .catch(console.error);

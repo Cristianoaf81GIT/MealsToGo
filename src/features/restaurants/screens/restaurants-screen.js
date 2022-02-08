@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { StatusBar, View, Platform, FlatList } from "react-native";
 import { Searchbar } from "react-native-paper";
@@ -6,6 +6,7 @@ import { RestaurantInfoCard } from "../components/restaurants-info-card.componen
 import styled from "styled-components/native";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { SafeArea } from "../../../utility/safe-area.component";
+import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 
 const resolveMarginTopInSearchContainer = () => {
   if (StatusBar.currentHeight && Platform && Platform.OS === "android") {
@@ -46,6 +47,8 @@ const dataList = [
 ];
 
 export const RestaurantsScreen = () => {
+  const restaurantContext = useContext(RestaurantsContext);
+  console.log(restaurantContext);
   const [searchQuery, setSearchQuery] = React.useState("");
   const onChangeSearch = (query) => setSearchQuery(query);
 
@@ -60,7 +63,7 @@ export const RestaurantsScreen = () => {
         />
       </SearchContainer>
       <RestaurantList
-        data={dataList}
+        data={restaurantContext.restaurants}
         renderItem={() => (
           <Spacer position="bottom" size="large">
             <RestaurantInfoCard />
