@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { StatusBar, View, Platform, FlatList } from "react-native";
-import { Searchbar } from "react-native-paper";
+import { Searchbar, ActivityIndicator, Colors } from "react-native-paper";
 import { RestaurantInfoCard } from "../components/restaurants-info-card.component";
 import styled from "styled-components/native";
+
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { SafeArea } from "../../../utility/safe-area.component";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
@@ -29,22 +30,15 @@ const RestaurantList = styled(FlatList).attrs((props) => ({
   },
 }))``;
 
-const dataList = [
-  { name: 1 },
-  { name: 2 },
-  { name: 3 },
-  { name: 4 },
-  { name: 5 },
-  { name: 6 },
-  { name: 7 },
-  { name: 8 },
-  { name: 9 },
-  { name: 10 },
-  { name: 11 },
-  { name: 12 },
-  { name: 13 },
-  { name: 14 },
-];
+const Loading = styled(ActivityIndicator)`
+  margin-left: -25px;
+`;
+
+const LoadingContainer = styled.View`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+`;
 
 export const RestaurantsScreen = () => {
   const { restaurants, isLoading, error } = useContext(RestaurantsContext);
@@ -54,6 +48,11 @@ export const RestaurantsScreen = () => {
 
   return (
     <SafeArea emulateUnlessSupported={true}>
+      {isLoading && (
+        <LoadingContainer>
+          <Loading size={50} animating={true} color={Colors.blue300} />
+        </LoadingContainer>
+      )}
       <ExpoStatusBar style="auto" />
       <SearchContainer>
         <Searchbar

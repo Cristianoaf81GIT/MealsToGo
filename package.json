@@ -1,5 +1,6 @@
 {
   "main": "node_modules/expo/AppEntry.js",
+  "license": "none",
   "scripts": {
     "start": "eslint && expo start",
     "android": "expo start --android",
