@@ -16,6 +16,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { SafeArea } from "./src/utility/safe-area.component";
 import { Ionicons } from "@expo/vector-icons";
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
+import { LocationContextProvider } from "./src/services/location/location.context";
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
@@ -85,12 +86,14 @@ export default function App() {
     <>
       <PaperProvider theme={paperTheme}>
         <ThemeProvider theme={theme}>
-          <RestaurantsContextProvider>
-            <NavigationContainer>
-              <AppTabs />
-            </NavigationContainer>
-            <ExpoStatusBar style="auto" />
-          </RestaurantsContextProvider>
+          <LocationContextProvider>
+            <RestaurantsContextProvider>
+              <NavigationContainer>
+                <AppTabs />
+              </NavigationContainer>
+              <ExpoStatusBar style="auto" />
+            </RestaurantsContextProvider>
+          </LocationContextProvider>
         </ThemeProvider>
       </PaperProvider>
     </>
