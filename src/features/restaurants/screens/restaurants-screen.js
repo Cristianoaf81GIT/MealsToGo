@@ -42,10 +42,7 @@ const LoadingContainer = styled.View`
 `;
 
 export const RestaurantsScreen = () => {
-  const { restaurants, isLoading, _error } = useContext(RestaurantsContext);
-
-  // const [searchQuery, setSearchQuery] = React.useState("");
-  // const onChangeSearch = (query) => setSearchQuery(query);
+  const { restaurants, isLoading } = useContext(RestaurantsContext);
 
   return (
     <SafeArea emulateUnlessSupported={true}>
