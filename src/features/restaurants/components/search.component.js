@@ -1,14 +1,18 @@
 import React, { useContext, useState, useEffect } from "react";
-import { View, StatusBar, Platform } from "react-native";
+// import { View, StatusBar, Platform } from "react-native";
+import { View } from "react-native";
 import styled from "styled-components/native";
 import { Searchbar } from "react-native-paper";
 import { LocationContext } from "../../../services/location/location.context";
 
-const resolveMarginTopInSearchContainer = () => {
-  if (StatusBar.currentHeight && Platform && Platform.OS === "android") {
-    // return `${StatusBar.currentHeight}px`;
-    return "0px";
-  }
+// const resolveMarginTopInSearchContainer = () => {
+//   if (StatusBar.currentHeight && Platform && Platform.OS === "android") {
+//     return `${StatusBar.currentHeight}px`;
+//   }
+//   return "0px";
+// };
+
+const resolveMarginTopInSearchContainerAlt = () => {
   return "0px";
 };
 
@@ -17,7 +21,7 @@ const SearchContainer = styled(View)`
   background-color: ${(props) => props.theme.colors.bg.primary};
   width: 100%;
   margin-bottom: 3px;
-  margin-top: ${resolveMarginTopInSearchContainer()};
+  margin-top: ${resolveMarginTopInSearchContainerAlt()};
 `;
 
 export const Search = () => {
