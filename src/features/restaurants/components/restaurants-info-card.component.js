@@ -1,7 +1,7 @@
 import React from "react";
 import { SvgXml } from "react-native-svg";
 import { Text } from "../../../typography/text.component";
-import { generate } from "../../../utils/keygenerator";
+import { generateKey } from "../../../utils/keygenerator";
 
 import { Spacer } from "../../../components/spacer/spacer.component";
 import star from "../../../../assets/star";
@@ -39,7 +39,12 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
         <Section>
           <Rating>
             {ratingArray.map((_index) => (
-              <SvgXml xml={star} width={20} height={20} key={`${generate()}`} />
+              <SvgXml
+                xml={star}
+                width={20}
+                height={20}
+                key={`${generateKey()}`}
+              />
             ))}
           </Rating>
           <SectionEnd>
