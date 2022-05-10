@@ -55,7 +55,10 @@ const createScreenOptions = ({ route }) => {
 
 export const AppNavigator = () => (
   <NavigationContainer>
-    <Tab.Navigator screenOptions={createScreenOptions}>
+    <Tab.Navigator
+      screenOptions={createScreenOptions}
+      tabBarOptions={{ showLabel: false }}
+    >
       <Tab.Screen
         name="Restaurants"
         component={RestaurantsNavigator}
