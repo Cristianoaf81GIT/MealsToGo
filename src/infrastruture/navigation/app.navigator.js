@@ -50,15 +50,13 @@ const createScreenOptions = ({ route }) => {
     ),
     tabBarActiveTintColor: "tomato",
     tabBarInactiveTintColor: "gray",
+    tabBarShowLabel: false,
   };
 };
 
 export const AppNavigator = () => (
   <NavigationContainer>
-    <Tab.Navigator
-      screenOptions={createScreenOptions}
-      tabBarOptions={{ showLabel: false }}
-    >
+    <Tab.Navigator screenOptions={createScreenOptions}>
       <Tab.Screen
         name="Restaurants"
         component={RestaurantsNavigator}
