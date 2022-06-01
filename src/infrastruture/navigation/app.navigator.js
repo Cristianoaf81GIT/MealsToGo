@@ -7,6 +7,7 @@ import styled from "styled-components/native";
 
 import { SafeArea } from "../../utility/safe-area.component";
 import { RestaurantsNavigator } from "./restaurants.navigator";
+import { MapScreen } from "../../features/map/screens/map.screens";
 
 const Tab = createBottomTabNavigator();
 
@@ -32,15 +33,15 @@ const SettingsScreen = () => {
     </SafeArea>
   );
 };
-const MapScreen = () => {
-  return (
-    <SafeArea>
-      <ViewContainer>
-        <Text>Map</Text>
-      </ViewContainer>
-    </SafeArea>
-  );
-};
+// const MapScreen = () => {
+//   return (
+//     <SafeArea>
+//       <ViewContainer>
+//         <Text>Map</Text>
+//       </ViewContainer>
+//     </SafeArea>
+//   );
+// };
 
 const createScreenOptions = ({ route }) => {
   const iconName = TAB_ICON[route.name];
@@ -62,14 +63,16 @@ export const AppNavigator = () => (
         component={RestaurantsNavigator}
         options={{ headerShown: false }}
       />
-      <Tab.Screen
-        name="Settings"
-        component={SettingsScreen}
-        options={{ headerShown: false }}
-      />
+
       <Tab.Screen
         name="Map"
         component={MapScreen}
+        options={{ headerShown: false }}
+      />
+
+      <Tab.Screen
+        name="Settings"
+        component={SettingsScreen}
         options={{ headerShown: false }}
       />
     </Tab.Navigator>
