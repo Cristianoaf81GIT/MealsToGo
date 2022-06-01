@@ -1,11 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View } from "react-native";
 import styled from "styled-components/native";
 import { Searchbar } from "react-native-paper";
 import { LocationContext } from "../../../services/location/location.context";
 
 const resolveMarginTopInSearchContainerAlt = () => {
-  return "0px";
+  return "40px";
 };
 
 const SearchContainer = styled(View)`
@@ -14,20 +14,23 @@ const SearchContainer = styled(View)`
   width: 100%;
   margin-bottom: 3px;
   margin-top: ${resolveMarginTopInSearchContainerAlt()};
+  position: absolute;
+  z-index: 999;
 `;
 
 export const Search = () => {
   const { keyword, search } = useContext(LocationContext);
   const [searchKeyword, setSearchKeyword] = useState(keyword);
 
-  // useEffect(() => {
-  //   setSearchKeyword(keyword);
-  // }, [keyword]);
+  useEffect(() => {
+    setSearchKeyword(keyword);
+  }, [keyword]);
 
   return (
     <SearchContainer>
       <Searchbar
         placeholder="Search for a location"
+        icon="map"
         value={searchKeyword}
         onSubmitEditing={() => {
           search(searchKeyword);
