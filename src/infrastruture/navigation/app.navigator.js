@@ -33,15 +33,6 @@ const SettingsScreen = () => {
     </SafeArea>
   );
 };
-// const MapScreen = () => {
-//   return (
-//     <SafeArea>
-//       <ViewContainer>
-//         <Text>Map</Text>
-//       </ViewContainer>
-//     </SafeArea>
-//   );
-// };
 
 const createScreenOptions = ({ route }) => {
   const iconName = TAB_ICON[route.name];
@@ -51,7 +42,7 @@ const createScreenOptions = ({ route }) => {
     ),
     tabBarActiveTintColor: "tomato",
     tabBarInactiveTintColor: "gray",
-    tabBarShowLabel: false,
+    // tabBarShowLabel: false,
   };
 };
 
