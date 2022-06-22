@@ -11,6 +11,7 @@ import { Provider as PaperProvider } from "react-native-paper";
 
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
 import { LocationContextProvider } from "./src/services/location/location.context";
+import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 import { Navigation } from "./src/infrastruture/navigation";
 
 export default function App() {
@@ -30,12 +31,14 @@ export default function App() {
     <>
       <PaperProvider theme={paperTheme}>
         <ThemeProvider theme={theme}>
-          <LocationContextProvider>
-            <RestaurantsContextProvider>
-              <Navigation />
-              <ExpoStatusBar style="auto" />
-            </RestaurantsContextProvider>
-          </LocationContextProvider>
+          <FavouritesContextProvider>
+            <LocationContextProvider>
+              <RestaurantsContextProvider>
+                <Navigation />
+                <ExpoStatusBar style="auto" />
+              </RestaurantsContextProvider>
+            </LocationContextProvider>
+          </FavouritesContextProvider>
         </ThemeProvider>
       </PaperProvider>
     </>

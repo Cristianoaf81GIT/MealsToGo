@@ -14,6 +14,7 @@ import { Spacer } from "../../../components/spacer/spacer.component";
 import { Search } from "../components/search.component";
 import { SafeArea } from "../../../utility/safe-area.component";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
+import { FavouritesContext } from "../../../services/favourites/favourites.context";
 
 const RestaurantList = styled(FlatList).attrs((props) => ({
   contentContainerStyle: {
@@ -33,6 +34,7 @@ const LoadingContainer = styled.View`
 
 export const RestaurantsScreen = ({ navigation }) => {
   const { restaurants, isLoading } = useContext(RestaurantsContext);
+  const { favourites } = useContext(FavouritesContext); 
 
   return (
     <SafeArea emulateUnlessSupported={true}>
