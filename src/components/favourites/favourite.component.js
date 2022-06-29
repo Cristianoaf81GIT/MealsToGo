@@ -4,20 +4,34 @@ import styled from "styled-components/native";
 import { AntDesign } from "@expo/vector-icons";
 import { FavouritesContext } from "../../services/favourites/favourites.context";
 
-const FavouriteButton = styled(TouchableOpacity)`  
+const FavouriteButton = styled(TouchableOpacity)`
   border-color: #20212a;
   position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 64px;
+  top: 25px;
+  right: 25px;
   z-index: 9;
 `;
 
-export const Favourite = () => {
-  const {favourites, addToFavourites, removeFromFavourites } = useContext(FavouritesContext);
-  return(
-    <FavouriteButton>
-      <AntDesign name="heart" size={24} color="red"/>
+export const Favourite = ({ restaurant }) => {
+  const { favourites, addToFavourites, removeFromFavourites } =
+    useContext(FavouritesContext);
+  const isFavourite = favourites.find((r) => r.placeId === restaurant.placeId);
+
+  console.log(favourites.legth);
+
+  return (
+    <FavouriteButton
+      onPress={() =>
+        !isFavourite
+          ? addToFavourites(restaurant)
+          : removeFromFavourites(restaurant)
+      }
+    >
+      <AntDesign
+        name={isFavourite ? "heart" : "hearto"}
+        size={24}
+        color={isFavourite ? "red" : "white"}
+      />
     </FavouriteButton>
   );
-}
+};

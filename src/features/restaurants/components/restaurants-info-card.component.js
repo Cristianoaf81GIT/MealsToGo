@@ -4,7 +4,7 @@ import { Text } from "../../../typography/text.component";
 import { generateKey } from "../../../utils/keygenerator";
 
 import { Spacer } from "../../../components/spacer/spacer.component";
-import {  Favourite } from "../../../components/favourites/favourite.component";
+import { Favourite } from "../../../components/favourites/favourite.component";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
 
@@ -34,7 +34,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const ratingArray = Array.from(new Array(Math.floor(rating)));
   return (
     <RestaurantCard elevation={5}>
-      <Favourite />
+      <Favourite restaurant={restaurant} />
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
         <Text variant="label">{name}</Text>
