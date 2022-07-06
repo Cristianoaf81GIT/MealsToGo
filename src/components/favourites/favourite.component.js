@@ -17,8 +17,6 @@ export const Favourite = ({ restaurant }) => {
     useContext(FavouritesContext);
   const isFavourite = favourites.find((r) => r.placeId === restaurant.placeId);
 
-  console.log(favourites.legth);
-
   return (
     <FavouriteButton
       onPress={() =>
