@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import {
   FlatList,
@@ -11,6 +11,7 @@ import { RestaurantInfoCard } from "../components/restaurants-info-card.componen
 import styled from "styled-components/native";
 
 import { Spacer } from "../../../components/spacer/spacer.component";
+import { FavouritesBar } from "../../../components/favourites/favourites-bar.component";
 import { Search } from "../components/search.component";
 import { SafeArea } from "../../../utility/safe-area.component";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
@@ -34,7 +35,8 @@ const LoadingContainer = styled.View`
 
 export const RestaurantsScreen = ({ navigation }) => {
   const { restaurants, isLoading } = useContext(RestaurantsContext);
-  const { favourites } = useContext(FavouritesContext); 
+  const { favourites } = useContext(FavouritesContext);
+  const [isToggled, setIsToggled] = useState(false);
 
   return (
     <SafeArea emulateUnlessSupported={true}>
@@ -44,7 +46,11 @@ export const RestaurantsScreen = ({ navigation }) => {
         </LoadingContainer>
       )}
       <ExpoStatusBar style="auto" />
-      <Search />
+      <Search
+        isFavouriteToggled={isToggled}
+        onFavouriteToggle={() => setIsToggled(!isToggled)}
+      />
+      {isToggled && <FavouritesBar />}
       <RestaurantList
         data={restaurants}
         renderItem={({ item }) => (

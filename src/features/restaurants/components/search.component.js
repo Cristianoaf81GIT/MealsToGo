@@ -16,17 +16,15 @@ const SearchContainer = styled(View)`
   margin-top: ${resolveMarginTopInSearchContainerAlt()};
 `;
 
-export const Search = () => {
+export const Search = ({ isFavouriteToggled, onFavouriteToggle }) => {
   const { keyword, search } = useContext(LocationContext);
   const [searchKeyword, setSearchKeyword] = useState(keyword);
-
-  // useEffect(() => {
-  //   setSearchKeyword(keyword);
-  // }, [keyword]);
 
   return (
     <SearchContainer>
       <Searchbar
+        icon={isFavouriteToggled ? "heart" : "heart-outline"}
+        onIconPress={onFavouriteToggle}
         placeholder="Search for a location"
         value={searchKeyword}
         onSubmitEditing={() => {
