@@ -1,10 +1,12 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import React from "react";
+import Constants from 'expo-constants';
 import {
   useFonts as useOswald,
   Oswald_400Regular,
 } from "@expo-google-fonts/oswald";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
+import { initializeApp } from 'firebase/app';
 import { ThemeProvider } from "styled-components/native";
 import { theme, paperTheme } from "./src/infrastruture/theme";
 import { Provider as PaperProvider } from "react-native-paper";
@@ -13,6 +15,17 @@ import { RestaurantsContextProvider } from "./src/services/restaurants/restauran
 import { LocationContextProvider } from "./src/services/location/location.context";
 import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 import { Navigation } from "./src/infrastruture/navigation";
+
+const firebaseConfig = {
+  apiKey: Constants.manifest.extra.apiKey,
+  authDomain: Constants.manifest.extra.authDomain,
+  projectId: Constants.manifest.extra.projectId,
+  storageBucket: Constants.manifest.extra.storageBucket,
+  messagingSenderId: Constants.manifest.extra.messagingSenderId,
+  appId: Constants.manifest.extra.appId 
+};
+
+initializeApp(firebaseConfig);
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
