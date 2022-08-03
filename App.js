@@ -1,12 +1,13 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Constants from 'expo-constants';
 import {
   useFonts as useOswald,
   Oswald_400Regular,
 } from "@expo-google-fonts/oswald";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
-import { initializeApp } from 'firebase/app';
+import { initializeApp, getApp } from 'firebase/app';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { ThemeProvider } from "styled-components/native";
 import { theme, paperTheme } from "./src/infrastruture/theme";
 import { Provider as PaperProvider } from "react-native-paper";
@@ -25,9 +26,14 @@ const firebaseConfig = {
   appId: Constants.manifest.extra.appId 
 };
 
+
 initializeApp(firebaseConfig);
 
+
 export default function App() {
+  const auth = getAuth();
+  const app = getApp();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [oswaldLoaded] = useOswald({
     Oswald_400Regular,
   });
@@ -40,6 +46,29 @@ export default function App() {
     return null;
   }
 
+
+
+ /*useEffect(() => {
+    let mounted = true;
+    if (mounted && app && !isAuthenticated) {
+      signInWithEmailAndPassword(auth, "user@user.com", "123456")
+        .then((userCredential) => {
+          console.log(userCredential);
+          setIsAuthenticated(true);
+        }).catch((error) => console.log(error));
+    }
+    return () => { mounted = false };
+  },[app, isAuthenticated])*/
+
+ /*if (app && !isAuthenticated) {
+  signInWithEmailAndPassword(auth, "userEmailHere@email.com", "yourAwesomePasswordHere")
+  .then((userCredential) => {
+    console.log(userCredential);
+    setIsAuthenticated(true);
+   }).catch((error) => console.log(error));
+  }*/
+
+  
   return (
     <>
       <PaperProvider theme={paperTheme}>
