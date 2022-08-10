@@ -15,6 +15,7 @@ import { Provider as PaperProvider } from "react-native-paper";
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
 import { LocationContextProvider } from "./src/services/location/location.context";
 import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
+import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 import { Navigation } from "./src/infrastruture/navigation";
 
 const firebaseConfig = {
@@ -45,42 +46,21 @@ export default function App() {
   if (!oswaldLoaded || !latoLoaded) {
     return null;
   }
-
-
-
- /*useEffect(() => {
-    let mounted = true;
-    if (mounted && app && !isAuthenticated) {
-      signInWithEmailAndPassword(auth, "user@user.com", "123456")
-        .then((userCredential) => {
-          console.log(userCredential);
-          setIsAuthenticated(true);
-        }).catch((error) => console.log(error));
-    }
-    return () => { mounted = false };
-  },[app, isAuthenticated])*/
-
- /*if (app && !isAuthenticated) {
-  signInWithEmailAndPassword(auth, "userEmailHere@email.com", "yourAwesomePasswordHere")
-  .then((userCredential) => {
-    console.log(userCredential);
-    setIsAuthenticated(true);
-   }).catch((error) => console.log(error));
-  }*/
-
   
   return (
     <>
       <PaperProvider theme={paperTheme}>
         <ThemeProvider theme={theme}>
-          <FavouritesContextProvider>
-            <LocationContextProvider>
-              <RestaurantsContextProvider>
-                <Navigation />
-                <ExpoStatusBar style="auto" />
-              </RestaurantsContextProvider>
-            </LocationContextProvider>
-          </FavouritesContextProvider>
+          <AuthenticationContextProvider>
+            <FavouritesContextProvider>
+              <LocationContextProvider>
+                <RestaurantsContextProvider>
+                  <Navigation />
+                  <ExpoStatusBar style="auto" />
+                </RestaurantsContextProvider>
+              </LocationContextProvider>
+            </FavouritesContextProvider>
+          </AuthenticationContextProvider>
         </ThemeProvider>
       </PaperProvider>
     </>
