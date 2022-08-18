@@ -7,7 +7,7 @@ import {
   Oswald_400Regular,
 } from "@expo-google-fonts/oswald";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
-import { initializeApp, getApp } from 'firebase/app';
+import { initializeApp } from 'firebase/app';
 import { ThemeProvider } from "styled-components/native";
 import { theme, paperTheme } from "./src/infrastruture/theme";
 import { Provider as PaperProvider } from "react-native-paper";
@@ -19,6 +19,7 @@ import { AuthenticationProvider } from "./src/services/authentication/authentica
 import { Navigation } from "./src/infrastruture/navigation";
 import warnings from './src/utils/warnings.json';
 
+LogBox.ignoreLogs(warnings.messages);
 
 const firebaseConfig = {
   apiKey: Constants.manifest.extra.apiKey,
@@ -47,7 +48,6 @@ export default function App() {
   }
  
   
-  LogBox.ignoreLogs(warnings.messages);
   
     
   return (
