@@ -1,5 +1,6 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { LogBox } from 'react-native';
 import Constants from 'expo-constants';
 import {
   useFonts as useOswald,
@@ -16,6 +17,8 @@ import { LocationContextProvider } from "./src/services/location/location.contex
 import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 import { AuthenticationProvider } from "./src/services/authentication/authentication.context";
 import { Navigation } from "./src/infrastruture/navigation";
+import warnings from './src/utils/warnings.json';
+
 
 const firebaseConfig = {
   apiKey: Constants.manifest.extra.apiKey,
@@ -31,7 +34,6 @@ initializeApp(firebaseConfig);
 
 
 export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [oswaldLoaded] = useOswald({
     Oswald_400Regular,
   });
@@ -43,7 +45,11 @@ export default function App() {
   if (!oswaldLoaded || !latoLoaded) {
     return null;
   }
+ 
   
+  LogBox.ignoreLogs(warnings.messages);
+  
+    
   return (
     <>
       <PaperProvider theme={paperTheme}>
