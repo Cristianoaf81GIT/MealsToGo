@@ -7,7 +7,6 @@ import {
 } from "@expo-google-fonts/oswald";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 import { initializeApp, getApp } from 'firebase/app';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { ThemeProvider } from "styled-components/native";
 import { theme, paperTheme } from "./src/infrastruture/theme";
 import { Provider as PaperProvider } from "react-native-paper";
@@ -15,7 +14,7 @@ import { Provider as PaperProvider } from "react-native-paper";
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
 import { LocationContextProvider } from "./src/services/location/location.context";
 import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
-import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
+import { AuthenticationProvider } from "./src/services/authentication/authentication.context";
 import { Navigation } from "./src/infrastruture/navigation";
 
 const firebaseConfig = {
@@ -32,8 +31,6 @@ initializeApp(firebaseConfig);
 
 
 export default function App() {
-  const auth = getAuth();
-  const app = getApp();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [oswaldLoaded] = useOswald({
     Oswald_400Regular,
@@ -51,7 +48,7 @@ export default function App() {
     <>
       <PaperProvider theme={paperTheme}>
         <ThemeProvider theme={theme}>
-          <AuthenticationContextProvider>
+          <AuthenticationProvider>            
             <FavouritesContextProvider>
               <LocationContextProvider>
                 <RestaurantsContextProvider>
@@ -59,8 +56,8 @@ export default function App() {
                   <ExpoStatusBar style="auto" />
                 </RestaurantsContextProvider>
               </LocationContextProvider>
-            </FavouritesContextProvider>
-          </AuthenticationContextProvider>
+            </FavouritesContextProvider>            
+         </AuthenticationProvider>
         </ThemeProvider>
       </PaperProvider>
     </>

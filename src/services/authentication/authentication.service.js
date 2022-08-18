@@ -1,7 +1,7 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 
-const loginRequest = (email, password) => signInWithEmailAndPassword(auth, email, password);
+export const loginRequest = (auth, email, password) => signInWithEmailAndPassword(auth, email, password);
   
  
 
