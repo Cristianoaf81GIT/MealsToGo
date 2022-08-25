@@ -10,6 +10,7 @@ export const AuthenticationProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const onLogin = (email, password) => {
     setIsLoading(true);
@@ -17,10 +18,12 @@ export const AuthenticationProvider = ({ children }) => {
        .then((userData) => {
         setUser(userData);
         setIsLoading(false);
+        setIsAuthenticated(true);
        })
       .catch((err) => {
         setIsLoading(false);
         setError(err);
+        setIsAuthenticated(false);
       });      
   }
 
@@ -30,7 +33,8 @@ export const AuthenticationProvider = ({ children }) => {
        user,
        isLoading,
        error,
-       onLogin       
+       onLogin,
+       isAuthenticated
       }}
     >
       {children}

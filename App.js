@@ -2,6 +2,7 @@ import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import React from "react";
 import { LogBox } from 'react-native';
 import Constants from 'expo-constants';
+import 'react-native-gesture-handler';
 import {
   useFonts as useOswald,
   Oswald_400Regular,
@@ -46,9 +47,7 @@ export default function App() {
   if (!oswaldLoaded || !latoLoaded) {
     return null;
   }
- 
-  
-  
+
     
   return (
     <>
