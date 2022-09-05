@@ -1,24 +1,9 @@
 import React from 'react';
-import { ImageBackground,View, Text, StyleSheet } from 'react-native';
-import imgBackground from '../../../../assets/home_bg.jpg';
+import { AccountBackground } from '../components/account.styles';
 
 export function AccountScreen() {
-  return(
-    <View style={styles.viewContainer}>
-      <ImageBackground source={imgBackground} style={styles.backgroundImage}>
-        <Text>Account screen</Text>
-      </ImageBackground>
-    </View>
-  );
+  return <AccountBackground/>
 }
 
 
-const styles = StyleSheet.create({
-  viewContainer: {
-    flex: 1
-  },
-  backgroundImage: {
-    flex: 1,
-    justifyContent: 'center',
-  }
-});
+
