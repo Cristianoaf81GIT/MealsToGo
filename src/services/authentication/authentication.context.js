@@ -22,7 +22,7 @@ export const AuthenticationProvider = ({ children }) => {
        })
       .catch((err) => {
         setIsLoading(false);
-        setError(err);
+        setError(err.toString());
         setIsAuthenticated(false);
       });      
   }
