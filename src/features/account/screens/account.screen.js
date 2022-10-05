@@ -3,7 +3,8 @@ import {
   AccountBackground, 
   AccountCover,
   AccountContainer,
-  AuthButton 
+  AuthButton,
+  Title 
 } from '../components/account.styles';
 
 import { Spacer } from '../../../components/spacer/spacer.component';
@@ -11,7 +12,8 @@ import { Spacer } from '../../../components/spacer/spacer.component';
 export function AccountScreen({ navigation }) {
   return ( 
     <AccountBackground>
-      <AccountCover/>    
+      <AccountCover/>   
+      <Title>Meals to Go</Title>
       <AccountContainer>
     
         <AuthButton
@@ -34,6 +36,7 @@ export function AccountScreen({ navigation }) {
         </Spacer>
 
       </AccountContainer>
+
     </AccountBackground>
   );
 }

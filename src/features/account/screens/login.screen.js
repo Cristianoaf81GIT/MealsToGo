@@ -4,13 +4,14 @@ import {
   AccountCover, 
   AccountContainer,
   AuthButton,
-  AuthInput
+  AuthInput,
+  ErrorContainer 
 } from '../components/account.styles';
 import { Spacer } from '../../../components/spacer/spacer.component';
 import { Text } from '../../../components/typography/text.component';
 import { AuthenticationContext } from '../../../services/authentication/authentication.context';
 
-export function LoginScreen() {
+export function LoginScreen({ navigation }) {
 
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
@@ -41,11 +42,11 @@ export function LoginScreen() {
           </Spacer>          
           
             { error && error.length && (
-              <Spacer size="large">
+              <ErrorContainer size="large">
                 <Text variant="error">
                   {error}
                 </Text>
-              </Spacer>
+              </ErrorContainer>
             )}             
                   
           <Spacer size="large">
@@ -57,7 +58,18 @@ export function LoginScreen() {
               Login
             </AuthButton>
           </Spacer>
-        </AccountContainer>      
+        </AccountContainer>     
+
+        <Spacer size="large">
+          <AuthButton 
+            mode="contained" 
+            onPress={() => 
+            navigation.goBack()}
+          >
+            Back
+          </AuthButton>
+        </Spacer>
+
     </AccountBackground>
   );
 }
