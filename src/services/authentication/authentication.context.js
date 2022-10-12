@@ -1,6 +1,9 @@
 import React, { useState, createContext } from 'react';
-import { loginRequest } from './authentication.service';
-import { getAuth, inMemoryPersistence } from 'firebase/auth';
+import { loginRequest, registerRequest } from './authentication.service';
+import { 
+  getAuth, 
+  inMemoryPersistence,   
+} from 'firebase/auth';
 
 export const AuthenticationContext = createContext();
 
@@ -11,7 +14,7 @@ export const AuthenticationProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+ 
   const onLogin = (email, password) => {
     setIsLoading(true);
     loginRequest(auth, email, password)
@@ -24,7 +27,34 @@ export const AuthenticationProvider = ({ children }) => {
         setIsLoading(false);
         setError(err.toString());
         setIsAuthenticated(false);
+        setTimeout(() => {
+          setError(null);
+        }, 3000);        
       });      
+  }
+
+  const onRegister = (email, password, repeatedPassword) => {
+    if (password !== repeatedPassword) {
+      setError("Error: Passwords do not match!");
+      setTimeout(() => {
+        setError(null);
+      }, 3000);
+    } else {
+      registerRequest(auth, email, password)
+        .then((userData) => {
+          setUser(userData);
+          setIsLoading(false);
+          setIsAuthenticated(true);
+        }).catch((err) => {
+          setIsLoading(false);
+          setError(err.toString());
+          setIsAuthenticated(false);
+          setTimeout(() => {
+            setError(null);
+          }, 3000);  
+        });
+    }   
+        
   }
 
   return (
@@ -34,7 +64,8 @@ export const AuthenticationProvider = ({ children }) => {
        isLoading,
        error,
        onLogin,
-       isAuthenticated
+       isAuthenticated,
+       onRegister,       
       }}
     >
       {children}

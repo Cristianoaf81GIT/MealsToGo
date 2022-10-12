@@ -16,7 +16,7 @@ export function LoginScreen({ navigation }) {
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
   const { onLogin, error } = useContext(AuthenticationContext);
-
+  
   return(
     <AccountBackground>
       <AccountCover/>
@@ -35,8 +35,7 @@ export function LoginScreen({ navigation }) {
               value={password}
               textContentType="password"
               secureTextEntry
-              autoCapitalize="none"
-              secure
+              autoCapitalize="none"             
               onChangeText={(p) => setPassword(p)}
              />
           </Spacer>          
