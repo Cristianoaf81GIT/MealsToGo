@@ -13,9 +13,6 @@ import { ThemeProvider } from "styled-components/native";
 import { theme, paperTheme } from "./src/infrastruture/theme";
 import { Provider as PaperProvider } from "react-native-paper";
 
-import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
-import { LocationContextProvider } from "./src/services/location/location.context";
-import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 import { AuthenticationProvider } from "./src/services/authentication/authentication.context";
 import { Navigation } from "./src/infrastruture/navigation";
 import warnings from './src/utils/warnings.json';
@@ -54,15 +51,9 @@ export default function App() {
       <PaperProvider theme={paperTheme}>
         <ThemeProvider theme={theme}>
           <AuthenticationProvider>            
-            <FavouritesContextProvider>
-              <LocationContextProvider>
-                <RestaurantsContextProvider>
-                  <Navigation />
-                  <ExpoStatusBar style="auto" />
-                </RestaurantsContextProvider>
-              </LocationContextProvider>
-            </FavouritesContextProvider>            
-         </AuthenticationProvider>
+            <Navigation />
+            <ExpoStatusBar style="auto" />
+          </AuthenticationProvider>
         </ThemeProvider>
       </PaperProvider>
     </>
