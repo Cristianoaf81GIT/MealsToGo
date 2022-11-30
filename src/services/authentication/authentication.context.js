@@ -66,7 +66,7 @@ export const AuthenticationProvider = ({ children }) => {
     setIsLoading(true);
     try {
       setUser(null);
-      await signOut(auth);
+      await signOut(auth);      
       setIsLoading(false);
       setIsAuthenticated(false);
     } catch(err) {
