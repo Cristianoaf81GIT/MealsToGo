@@ -16,12 +16,7 @@ import { Search } from "../components/search.component";
 import { SafeArea } from "../../../utility/safe-area.component";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 import { FavouritesContext } from "../../../services/favourites/favourites.context";
-
-const RestaurantList = styled(FlatList).attrs((props) => ({
-  contentContainerStyle: {
-    padding: Number(props.theme.space[3].split("px")[0]),
-  },
-}))``;
+import { RestaurantList } from "../components/restaurant-list.styles";
 
 const Loading = styled(ActivityIndicator)`
   margin-left: -25px;
