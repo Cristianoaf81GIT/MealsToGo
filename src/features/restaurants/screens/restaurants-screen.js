@@ -10,7 +10,7 @@ import { RestaurantInfoCard } from "../components/restaurants-info-card.componen
 import styled from "styled-components/native";
 
 import { Spacer } from "../../../components/spacer/spacer.component";
-import { FadeInView  }  from "../../../components/animations/fade.animation";
+import { FadeInView } from "../../../components/animations/fade.animation";
 import { FavouritesBar } from "../../../components/favourites/favourites-bar.component";
 import { Search } from "../components/search.component";
 import { SafeArea } from "../../../utility/safe-area.component";
@@ -34,7 +34,7 @@ export const RestaurantsScreen = ({ navigation }) => {
   const [isToggled, setIsToggled] = useState(false);
 
   return (
-    <SafeArea emulateUnlessSupported={true}>      
+    <SafeArea emulateUnlessSupported={true}>
       {isLoading && (
         <LoadingContainer>
           <Loading size={50} animating={true} color={Colors.blue300} />
@@ -50,7 +50,7 @@ export const RestaurantsScreen = ({ navigation }) => {
           favourites={favourites}
           onNavigate={navigation.navigate}
         />
-      )}      
+      )}
       <RestaurantList
         data={restaurants}
         renderItem={({ item }) => (
@@ -62,12 +62,12 @@ export const RestaurantsScreen = ({ navigation }) => {
             }
           >
             <Spacer position="bottom" size="large">
-              <RestaurantInfoCard restaurant={item} />              
+              <RestaurantInfoCard restaurant={item} />
             </Spacer>
           </TouchableOpacity>
         )}
         keyExtractor={(item) => String(item.name)}
-      />     
-   </SafeArea>
+      />
+    </SafeArea>
   );
 };

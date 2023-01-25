@@ -1,8 +1,8 @@
-import 'dotenv/config';
+import "dotenv/config";
 
 export default {
-  name: 'MealsToGo',
-  version: '0.0.1',
+  name: "MealsToGo",
+  version: "0.0.1",
   extra: {
     apiKey: process.env.apiKey,
     authDomain: process.env.authDomain,
@@ -10,7 +10,6 @@ export default {
     storageBucket: process.env.storageBucket,
     messagingSenderId: process.env.messagingSenderId,
     appId: process.env.appId,
-    appWarnings: process.env.appWarnings
+    appWarnings: process.env.appWarnings,
   },
 };
-

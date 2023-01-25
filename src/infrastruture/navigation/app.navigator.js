@@ -26,7 +26,6 @@ const ViewContainer = styled.View`
   align-items: center;
 `;
 
-
 const createScreenOptions = ({ route }) => {
   const iconName = TAB_ICON[route.name];
   return {
@@ -45,24 +44,24 @@ export const AppNavigator = () => (
       <RestaurantsContextProvider>
         <Tab.Navigator screenOptions={createScreenOptions}>
           <Tab.Screen
-          name="Restaurants"
-          component={RestaurantsNavigator}
-          options={{ headerShown: false }}
-        />
+            name="Restaurants"
+            component={RestaurantsNavigator}
+            options={{ headerShown: false }}
+          />
 
           <Tab.Screen
-          name="Map"
-          component={MapScreen}
-          options={{ headerShown: false }}
-        />
+            name="Map"
+            component={MapScreen}
+            options={{ headerShown: false }}
+          />
 
           <Tab.Screen
-          name="Settings"
-          component={SettingsNavigator}
-          options={{ headerShown: false }}
-        />
-          </Tab.Navigator> 
-        </RestaurantsContextProvider>
-      </LocationContextProvider>
-    </FavouritesContextProvider>
+            name="Settings"
+            component={SettingsNavigator}
+            options={{ headerShown: false }}
+          />
+        </Tab.Navigator>
+      </RestaurantsContextProvider>
+    </LocationContextProvider>
+  </FavouritesContextProvider>
 );

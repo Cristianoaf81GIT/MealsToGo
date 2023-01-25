@@ -1,21 +1,21 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import React from "react";
-import { LogBox } from 'react-native';
-import Constants from 'expo-constants';
-import 'react-native-gesture-handler';
+import { LogBox } from "react-native";
+import Constants from "expo-constants";
+import "react-native-gesture-handler";
 import {
   useFonts as useOswald,
   Oswald_400Regular,
 } from "@expo-google-fonts/oswald";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
-import { initializeApp } from 'firebase/app';
+import { initializeApp } from "firebase/app";
 import { ThemeProvider } from "styled-components/native";
 import { theme, paperTheme } from "./src/infrastruture/theme";
 import { Provider as PaperProvider } from "react-native-paper";
 
 import { AuthenticationProvider } from "./src/services/authentication/authentication.context";
 import { Navigation } from "./src/infrastruture/navigation";
-import warnings from './src/utils/warnings.json';
+import warnings from "./src/utils/warnings.json";
 
 LogBox.ignoreLogs(warnings.messages);
 
@@ -25,12 +25,10 @@ const firebaseConfig = {
   projectId: Constants.manifest.extra.projectId,
   storageBucket: Constants.manifest.extra.storageBucket,
   messagingSenderId: Constants.manifest.extra.messagingSenderId,
-  appId: Constants.manifest.extra.appId 
+  appId: Constants.manifest.extra.appId,
 };
 
-
 initializeApp(firebaseConfig);
-
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
@@ -45,12 +43,11 @@ export default function App() {
     return null;
   }
 
-    
   return (
     <>
       <PaperProvider theme={paperTheme}>
         <ThemeProvider theme={theme}>
-          <AuthenticationProvider>            
+          <AuthenticationProvider>
             <Navigation />
             <ExpoStatusBar style="auto" />
           </AuthenticationProvider>
