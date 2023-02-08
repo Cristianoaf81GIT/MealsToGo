@@ -11,10 +11,14 @@ import {
 
 import { Spacer } from "../../../components/spacer/spacer.component";
 
+/**
+* ref: https://github.com/mobinni/MealsToGo/tree/bonus-camera-3/src
+* */
+
 export function AccountScreen({ navigation }) {
   return (
     <AccountBackground>
-      <AccountCover />
+      <AccountCover/>
       <AnimationWrapper>
         <LottieView
           key="animation"
@@ -44,6 +48,7 @@ export function AccountScreen({ navigation }) {
           </AuthButton>
         </Spacer>
       </AccountContainer>
+      
     </AccountBackground>
   );
 }

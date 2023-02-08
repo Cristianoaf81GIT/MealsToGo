@@ -1,50 +1,69 @@
-import React, { useRef } from "react";
-import { Camera, CameraType } from "expo-camera";
+import React, { useRef, useState, useEffect, useContext } from "react";
+import { Camera } from "expo-camera";
 import styled from "styled-components/native";
-import { Button, View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import { View, TouchableOpacity } from "react-native";
 import { Text } from "../../../components/typography/text.component";
+
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 const ProfileCamera = styled(Camera)`
   width: 100%;
   height: 100%;
-`;
-
-const CameraPermissionContainer = styled.View`
   flex: 1;
-  justifycontent: center;
 `;
 
-const StyledText = styled(Text)`
-  textalign: center;
+const InnerSnap = styled.View`
+  width: 100%;
+  height: 100%;
+  z-index: 999;
 `;
 
-const StyledButton = styled(Button)`
-  margin: 5%;
-  height: 180p;
-`;
-
-export const CameraScreen = () => {
+export const CameraScreen = ({ navigation }) => {
+  const [hasPermission, setHasPermission] = useState(null);
   const cameraRef = useRef();
-  const [permission, requestPermission] = Camera.useCameraPermissions();
+  const { user } = useContext(AuthenticationContext);
+  
+  const snap = async () => {
+    if (cameraRef) {
+      const photo = await cameraRef.current.takePictureAsync();
+      AsyncStorage.setItem(`${user.uid}-photo`, photo.uri);
+      navigation.goBack();
+    }
+  };
 
-  if (!permission) {
+  useEffect(() => {
+    (async () => {
+      /*Camera.requestPermissionsAsync();  is deprecated*/
+      const { status } = await Camera.requestCameraPermissionsAsync();
+      setHasPermission(status === "granted");
+    })();
+  }, []);
+
+  if (hasPermission === null) {
     return <View />;
   }
-
-  if (!permission.granted) {
-    return (
-      <CameraPermissionContainer>
-        <StyledText>We need your permission to show the camera.</StyledText>
-        <StyledButton onPress={requestPermission} title="Grant permission" />
-      </CameraPermissionContainer>
-    );
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
   }
+
+  /*************************
+   * note android requires
+   * ratio={"16:9"} 
+   *************************/
 
   return (
     <ProfileCamera
       ref={(camera) => (cameraRef.current = camera)}
-      type={CameraType.front}
-    />
+      type={Camera.Constants.Type.front}
+      ratio={"16:9"}
+    >
+      
+      <TouchableOpacity onPress={snap}>
+        <InnerSnap />
+      </TouchableOpacity>
+    </ProfileCamera>
   );
 };
+

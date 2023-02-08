@@ -7,6 +7,7 @@ import {
   AuthButton,
   AuthInput,
   ErrorContainer,
+  Title
 } from "../components/account.styles";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { Text } from "../../../components/typography/text.component";
@@ -21,6 +22,7 @@ export function RegisterScreen({ navigation }) {
   return (
     <AccountBackground>
       <AccountCover />
+      <Title>Meals To Go</Title>
       <AccountContainer>
         <AuthInput
           label="E-mail"

@@ -3,6 +3,7 @@ import { colors } from "../../../infrastruture/theme/colors";
 import { Button, TextInput } from "react-native-paper";
 import { Text } from "../../../components/typography/text.component";
 
+
 export const AccountBackground = styled.ImageBackground.attrs({
   source: require("../../../../assets/home_bg.jpg"),
 })`
@@ -25,6 +26,7 @@ export const AccountContainer = styled.View`
   margin-top: ${(props) => props.theme.space[2]};
 `;
 
+
 export const AuthButton = styled(Button).attrs({
   color: colors.brand.primary,
 })`
@@ -37,6 +39,8 @@ export const AuthInput = styled(TextInput)`
 
 export const Title = styled(Text)`
   font-size: 30px;
+  paddingTop: 70%; /* added in 8/2/23 */
+  backgroundcolor: rgba(255,255,255, 0.5);
 `;
 
 export const ErrorContainer = styled.View`
@@ -51,6 +55,6 @@ export const AnimationWrapper = styled.View`
   width: 100%;
   height: 40%;
   position: absolute;
-  top: 30px;
-  padding: ${(props) => props.theme.space[2]};
+  top: 30px;  
+  /*padding: ${(props) => props.theme.space[2]};*/
 `;
