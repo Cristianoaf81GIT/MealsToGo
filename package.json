@@ -1,6 +1,9 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "license": "UNLICENSED",
+  "engines": {
+    "node": "18"
+  },
   "scripts": {
     "start": "eslint && npx expo start",
     "android": "npx expo start --android",
