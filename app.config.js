@@ -11,5 +11,8 @@ export default {
     messagingSenderId: process.env.messagingSenderId,
     appId: process.env.appId,
     appWarnings: process.env.appWarnings,
+    apiUrlLocal: process.env.apiUrlLocal,
+    apiUrlRemote: process.env.apiUrlRemote,
+    stage: process.env.stage
   },
 };
